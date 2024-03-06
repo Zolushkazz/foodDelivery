@@ -1,7 +1,7 @@
 import { connect, set } from "mongoose";
 
 const CONNECTION_STRING: string =
-  "mongodb+srv://zolushkazz13:@Pi98307@zolushkazz.p23msff.mongodb.net/";
+  "mongodb+srv://zolushkazz13:hy6K44xC0Xr4sTnR@zolushkazz.p23msff.mongodb.net/";
 
 export const ConnectDb = async () => {
   set("strictQuery", false);
