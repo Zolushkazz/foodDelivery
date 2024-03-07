@@ -2,10 +2,23 @@
 
 import { Stack, TextField, Typography } from "@mui/material";
 
-export const SignupInput = () => {
+type SignupInputProps = {
+  label: string;
+  placeholder: string;
+  width: string;
+};
+
+export const SignupInput = (props: SignupInputProps) => {
+  const { label, placeholder, width } = props;
+
   return (
     <Stack>
-      <TextField inputProps={{ style: { padding: "8px 20px" } }}></TextField>
+      <TextField
+        label={label}
+        sx={{ width }}
+        placeholder={placeholder}
+        fullWidth
+      ></TextField>
     </Stack>
   );
 };

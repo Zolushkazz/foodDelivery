@@ -11,13 +11,14 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 
 export const SignupNavbar = () => {
   return (
-    <Container>
+    <Stack>
       <Box
         sx={{
           display: "flex",
           gap: "20px",
           justifyContent: "space-between",
           alignContent: "center",
+          paddingX: "10%",
         }}
       >
         <Box sx={{ display: "flex", gap: "20px", alignItems: "center" }}>
@@ -63,6 +64,6 @@ export const SignupNavbar = () => {
           </Typography>
         </Box>
       </Box>
-    </Container>
+    </Stack>
   );
 };

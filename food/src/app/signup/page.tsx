@@ -5,7 +5,7 @@ import { Stack } from "@mui/material";
 
 const Signup = () => {
   return (
-    <Stack>
+    <Stack sx={{ width: "100vw", marginBottom: "300px ", marginTop: "50px" }}>
       <SignupComponents />
     </Stack>
   );
