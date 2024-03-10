@@ -5,10 +5,11 @@ import { Box, OutlinedInput, Container, Typography } from "@mui/material";
 import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
 import { useState } from "react";
 import axios from "axios";
+import { ButtonSign } from "../Button";
 
 export const SignupComponents = (props: any) => {
   const [userData, setUserData] = useState();
-
+  const text = ["Ner", "nas", "huis"];
   const url = "http://localhost:8000/users/signup";
 
   //any type ugj boloh eseh?
@@ -77,8 +78,15 @@ export const SignupComponents = (props: any) => {
           Утасны дугаар
           <OutlinedInput placeholder="Утасны дугаараа оруулна уу"></OutlinedInput>
         </Box>
-        <SignupPasswordInput />
-        <SignupPasswordInput />
+        <Box>
+          <Typography>Нууц үг</Typography>
+          <SignupPasswordInput />
+        </Box>
+        <Box>
+          <Typography>Нууц үг давтах</Typography>
+          <SignupPasswordInput />
+        </Box>
+
         <Box
           sx={{
             display: "flex",
@@ -92,12 +100,13 @@ export const SignupComponents = (props: any) => {
           <CheckBoxOutlinedIcon />
           Үйлчилгээний нөхцөл зөвшөөрөх
         </Box>
+        <ButtonSign
+          backgroundColor="#EEEFF2"
+          color="#1C20243D"
+          placeholder="Бүртгүүлэх"
+          borderColor=""
+        />
       </Box>
     </Container>
   );
 };
-
-//password input bolgoh signup inputiig
-//busd ymnii inputiig dahij hiiih mui iin input eer
-//login hiij duusgah
-//showPass iig pass input dre duudaj hiih props oo bolih

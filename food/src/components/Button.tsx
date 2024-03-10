@@ -1,12 +1,22 @@
 import { Button } from "@mui/material";
 
-export const ButtonSign = () => {
+type ButtonStyle = {
+  placeholder: string;
+  backgroundColor: string;
+  color: string;
+  borderColor: string;
+};
+
+export const ButtonSign = (props: ButtonStyle) => {
+  const { backgroundColor, placeholder, color, borderColor } = props;
+
   return (
     <Button
       sx={{
-        backgroundColor: "#EEEFF2",
-        color: "#1C20243D",
-        padding: "10px",
+        backgroundColor: { backgroundColor },
+        color: { color },
+        placeholder: { placeholder },
+        borderColor: { borderColor },
       }}
     >
       Бүртгүүлэх

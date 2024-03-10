@@ -23,7 +23,6 @@ export const SignupPasswordInput = () => {
   };
   return (
     <Stack>
-      <Typography>Нууц үг</Typography>
       <FormControl
         sx={{
           m: 0.5,
