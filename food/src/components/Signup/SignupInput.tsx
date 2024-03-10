@@ -1,24 +1,59 @@
 "use client";
 
-import { Stack, TextField, Typography } from "@mui/material";
+import {
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { useState } from "react";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 
-type SignupInputProps = {
-  label: string;
-  placeholder: string;
-  width: string;
-};
+export const SignupPasswordInput = () => {
+  const [showPass, setShowPass] = useState(false);
+  const handleShowPassword = () => setShowPass((show) => !show);
 
-export const SignupInput = (props: SignupInputProps) => {
-  const { label, placeholder, width } = props;
-
+  const handleMouseDownPass = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
   return (
     <Stack>
-      <TextField
-        label={label}
-        sx={{ width }}
-        placeholder={placeholder}
-        fullWidth
-      ></TextField>
+      <Typography>Нууц үг</Typography>
+      <FormControl
+        sx={{
+          m: 0.5,
+          width: "370px",
+          height: "48px",
+        }}
+      >
+        <OutlinedInput
+          placeholder="Нууц үгээ оруулна уу"
+          label="Password"
+          id="outlined-adornment-password"
+          type={showPass ? "text" : "password"}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleShowPassword}
+                onMouseDown={handleMouseDownPass}
+                edge="end"
+              >
+                {showPass ? (
+                  <VisibilityOffOutlinedIcon />
+                ) : (
+                  <VisibilityOutlinedIcon />
+                )}
+              </IconButton>
+            </InputAdornment>
+          }
+        ></OutlinedInput>
+      </FormControl>
     </Stack>
   );
 };

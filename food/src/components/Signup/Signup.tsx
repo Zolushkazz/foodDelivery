@@ -1,24 +1,25 @@
 "use client";
 
-import Image from "next/image";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import { SignupInput } from "./SignupInput";
-import { Button, Grid, Stack } from "@mui/material";
+import { SignupPasswordInput } from "./SignupInput";
+import { Box, OutlinedInput, Container, Typography } from "@mui/material";
 import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
 import { useState } from "react";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import axios from "axios";
 
 export const SignupComponents = (props: any) => {
-  const [isShow, setIsShow] = useState();
-  const [connect, setConnect] = useState();
+  const [userData, setUserData] = useState();
 
-  const handleSubmit  = (event) =>{
-    
-  }
+  const url = "http://localhost:8000/users/signup";
 
+  //any type ugj boloh eseh?
+  // const handleSubmit = async (ev: any) => {
+  //   ev.preventDefault();
+  //   try {
+  //     await axios.post(url, userData);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   return (
     <Container
       sx={{
@@ -54,7 +55,7 @@ export const SignupComponents = (props: any) => {
           }}
         >
           Нэр
-          <SignupInput label="" placeholder="Нэрээ оруулна уу" width="400px" />
+          <OutlinedInput placeholder="Нэрээ оруулна уу"></OutlinedInput>
         </Box>
         <Box
           sx={{
@@ -64,11 +65,7 @@ export const SignupComponents = (props: any) => {
           }}
         >
           И-мэйл
-          <SignupInput
-            label=""
-            placeholder="И-мэйлээ оруулна уу"
-            width="400px"
-          />
+          <OutlinedInput placeholder="И-мэйлээ оруулна уу"></OutlinedInput>
         </Box>
         <Box
           sx={{
@@ -78,40 +75,10 @@ export const SignupComponents = (props: any) => {
           }}
         >
           Утасны дугаар
-          <SignupInput
-            label=""
-            placeholder="Утасны дугаараа оруулна уу"
-            width="400px"
-          />
+          <OutlinedInput placeholder="Утасны дугаараа оруулна уу"></OutlinedInput>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-          }}
-        >
-          Нууц үг
-          <SignupInput
-            label=""
-            placeholder="Нууц үгээ оруулна уу"
-            width="400px"
-          />
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-          }}
-        >
-          Нууц үг давтах
-          <SignupInput
-            label=""
-            placeholder="Нууц үгээ оруулна уу"
-            width="400px"
-          />
-        </Box>
+        <SignupPasswordInput />
+        <SignupPasswordInput />
         <Box
           sx={{
             display: "flex",
@@ -125,16 +92,12 @@ export const SignupComponents = (props: any) => {
           <CheckBoxOutlinedIcon />
           Үйлчилгээний нөхцөл зөвшөөрөх
         </Box>
-        <Button
-          sx={{
-            backgroundColor: "#EEEFF2",
-            color: "#1C20243D",
-            padding: "10px",
-          }}
-        >
-          Бүртгүүлэх
-        </Button>
       </Box>
     </Container>
   );
 };
+
+//password input bolgoh signup inputiig
+//busd ymnii inputiig dahij hiiih mui iin input eer
+//login hiij duusgah
+//showPass iig pass input dre duudaj hiih props oo bolih
