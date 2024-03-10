@@ -105,6 +105,8 @@ export const SignupComponents = (props: any) => {
           color="#1C20243D"
           placeholder="Бүртгүүлэх"
           borderColor=""
+          width=""
+          height=""
         />
       </Box>
     </Container>

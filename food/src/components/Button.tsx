@@ -5,10 +5,13 @@ type ButtonStyle = {
   backgroundColor: string;
   color: string;
   borderColor: string;
+  width: string;
+  height: string;
 };
 
 export const ButtonSign = (props: ButtonStyle) => {
-  const { backgroundColor, placeholder, color, borderColor } = props;
+  const { backgroundColor, placeholder, width, height, color, borderColor } =
+    props;
 
   return (
     <Button
@@ -17,9 +20,9 @@ export const ButtonSign = (props: ButtonStyle) => {
         color: { color },
         placeholder: { placeholder },
         borderColor: { borderColor },
+        width: { width },
+        height: { height },
       }}
-    >
-      Бүртгүүлэх
-    </Button>
+    ></Button>
   );
 };

@@ -31,6 +31,8 @@ export const ResetPassword = () => {
         borderColor=""
         backgroundColor="#EEEFF2"
         color="#1C20243D"
+        width=""
+        height=""
       />
     </Container>
   );
