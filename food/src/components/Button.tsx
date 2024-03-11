@@ -7,22 +7,39 @@ type ButtonStyle = {
   borderColor: string;
   width: string;
   height: string;
+  onClick: any;
+  disabled: boolean;
+  style: any;
 };
 
 export const ButtonSign = (props: ButtonStyle) => {
-  const { backgroundColor, placeholder, width, height, color, borderColor } =
-    props;
+  const {
+    backgroundColor,
+    placeholder,
+    width,
+    height,
+    color,
+    borderColor,
+    onClick,
+    disabled,
+    style,
+  } = props;
 
   return (
     <Button
+      onClick={onClick}
+      variant="contained"
       sx={{
         backgroundColor: { backgroundColor },
         color: { color },
-        placeholder: { placeholder },
         borderColor: { borderColor },
         width: { width },
         height: { height },
       }}
-    ></Button>
+      disabled={disabled}
+      style={style}
+    >
+      {placeholder}
+    </Button>
   );
 };

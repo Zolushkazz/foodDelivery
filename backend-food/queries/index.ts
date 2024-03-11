@@ -1,1 +1,1 @@
-export * from "./user/userQuery";
+export * from "./user";

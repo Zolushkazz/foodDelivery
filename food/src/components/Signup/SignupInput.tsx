@@ -4,19 +4,22 @@ import {
   FormControl,
   IconButton,
   InputAdornment,
-  InputLabel,
   OutlinedInput,
   Stack,
-  TextField,
-  Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 
-export const SignupPasswordInput = () => {
+type SignupPasswordInputProps = {
+  name: string;
+  handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+};
+
+export const SignupPasswordInput = (props: SignupPasswordInputProps) => {
   const [showPass, setShowPass] = useState(false);
   const handleShowPassword = () => setShowPass((show) => !show);
+  const { handleChange, name } = props;
 
   const handleMouseDownPass = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -33,7 +36,9 @@ export const SignupPasswordInput = () => {
         <OutlinedInput
           placeholder="Нууц үгээ оруулна уу"
           label="Password"
+          name={name}
           id="outlined-adornment-password"
+          onChange={handleChange}
           type={showPass ? "text" : "password"}
           endAdornment={
             <InputAdornment position="end">

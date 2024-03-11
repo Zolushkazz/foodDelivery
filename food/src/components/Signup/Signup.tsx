@@ -1,26 +1,79 @@
 "use client";
 
 import { SignupPasswordInput } from "./SignupInput";
-import { Box, OutlinedInput, Container, Typography } from "@mui/material";
-import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
-import { useState } from "react";
+import {
+  Box,
+  Container,
+  Typography,
+  Checkbox,
+  FormControl,
+} from "@mui/material";
+import { ChangeEvent, useEffect, useState } from "react";
 import axios from "axios";
 import { ButtonSign } from "../Button";
+import { Input } from "../Input";
+import { useRouter } from "next/navigation";
+
+type UserDataType = {
+  password: string;
+  rePassword: string;
+  name: string;
+  email: string;
+  phone: string;
+};
 
 export const SignupComponents = (props: any) => {
-  const [userData, setUserData] = useState();
-  const text = ["Ner", "nas", "huis"];
-  const url = "http://localhost:8000/users/signup";
+  const [userData, setUserData] = useState<UserDataType>({
+    email: "",
+    name: "",
+    password: "",
+    phone: "",
+    rePassword: "",
+  });
+  const [btnColor, setBtnColor] = useState(true);
+  const [checkBox, setCheckBox] = useState(false);
+  const { push } = useRouter();
 
-  //any type ugj boloh eseh?
-  // const handleSubmit = async (ev: any) => {
-  //   ev.preventDefault();
-  //   try {
-  //     await axios.post(url, userData);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const pressCheckBox = () => {
+    setCheckBox(!checkBox);
+  };
+  useEffect(() => {
+    if (
+      !userData.name ||
+      !userData.email ||
+      !userData.password ||
+      !userData.phone ||
+      !checkBox
+    ) {
+      console.log("not in");
+      setBtnColor(false);
+      return;
+    }
+    setBtnColor(true);
+  }, [userData, checkBox]);
+
+  const url = "http://localhost:8000/user/signup";
+
+  const handleSubmit = async (ev: any) => {
+    ev.preventDefault();
+    const { rePassword, password } = userData;
+    if (password !== rePassword) return alert("Pass buruu");
+
+    try {
+      await axios.post(url, userData);
+      push("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setUserData({ ...userData, [name]: value });
+  };
+  console.log(userData);
+
+
   return (
     <Container
       sx={{
@@ -30,7 +83,7 @@ export const SignupComponents = (props: any) => {
         alignItems: "center",
       }}
     >
-      <Box
+      <FormControl
         sx={{
           gap: "30px",
           display: "flex",
@@ -48,43 +101,32 @@ export const SignupComponents = (props: any) => {
         >
           Бүртгүүлэх
         </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-          }}
-        >
-          Нэр
-          <OutlinedInput placeholder="Нэрээ оруулна уу"></OutlinedInput>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-          }}
-        >
-          И-мэйл
-          <OutlinedInput placeholder="И-мэйлээ оруулна уу"></OutlinedInput>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-          }}
-        >
-          Утасны дугаар
-          <OutlinedInput placeholder="Утасны дугаараа оруулна уу"></OutlinedInput>
-        </Box>
+        <Input
+          onChange={handleChange}
+          name="name"
+          placeholder="Нэрээ оруулна уу"
+          text="Нэр"
+        />
+        <Input
+          onChange={handleChange}
+          name="email"
+          placeholder="И-мэйлээ оруулна уу"
+          text=" И-мэйл"
+        />
+        <Input
+          onChange={handleChange}
+          name="phone"
+          placeholder="Утасны дугаараа оруулна уу"
+          text="Утасны дугаар"
+        />
+
         <Box>
           <Typography>Нууц үг</Typography>
-          <SignupPasswordInput />
+          <SignupPasswordInput name="password" handleChange={handleChange} />
         </Box>
         <Box>
           <Typography>Нууц үг давтах</Typography>
-          <SignupPasswordInput />
+          <SignupPasswordInput name="rePassword" handleChange={handleChange} />
         </Box>
 
         <Box
@@ -93,22 +135,27 @@ export const SignupComponents = (props: any) => {
             gap: "12px",
             fontSize: "14px",
             marginTop: "20px",
-            marginBottom: "20px",
             alignItems: "center",
           }}
         >
-          <CheckBoxOutlinedIcon />
+          <Checkbox required onClick={pressCheckBox} />
           Үйлчилгээний нөхцөл зөвшөөрөх
         </Box>
         <ButtonSign
-          backgroundColor="#EEEFF2"
-          color="#1C20243D"
+          disabled={!btnColor}
+          onClick={handleSubmit}
+          backgroundColor=""
+          color=""
           placeholder="Бүртгүүлэх"
           borderColor=""
-          width=""
-          height=""
+          width="373px"
+          height="50px"
+          style={{
+            backgroundColor: btnColor ? "rgba(24,186,81,255)" : "#EEEFF2",
+            color: btnColor ? "white" : "#1C20243D",
+          }}
         />
-      </Box>
+      </FormControl>
     </Container>
   );
 };

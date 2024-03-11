@@ -4,12 +4,19 @@ import Image from "next/image";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import { InputAdornment, Stack, TextField } from "@mui/material";
+import { Grid, InputAdornment, Stack, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import { useState } from "react";
+import { UserModal } from "../Modal/userModal";
 
 export const SignupNavbar = () => {
+  const [showModal, setShowModal] = useState(false);
+  const handleShowModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <Stack>
       <Box
@@ -58,12 +65,16 @@ export const SignupNavbar = () => {
             <ShoppingBasketOutlinedIcon />
             Сагс
           </Typography>
-          <Typography sx={{ display: "flex", gap: "10px" }}>
+          <Box
+            onClick={handleShowModal}
+            sx={{ display: "flex", gap: "10px", alignItems: "center" }}
+          >
             <PersonOutlineOutlinedIcon />
             Нэвтрэх
-          </Typography>
+          </Box>
         </Box>
       </Box>
+      {showModal && <UserModal />}
     </Stack>
   );
 };

@@ -23,7 +23,7 @@ export const ResetPassword = () => {
       </Typography>
       <Box>
         <InputLabel>Нууц үг сэргээх код</InputLabel>
-        <SignupPasswordInput />
+        <SignupPasswordInput handleChange={} name="password" />
       </Box>
 
       <ButtonSign
@@ -33,6 +33,9 @@ export const ResetPassword = () => {
         color="#1C20243D"
         width=""
         height=""
+        onClick={""}
+        disabled={false}
+        style=""
       />
     </Container>
   );

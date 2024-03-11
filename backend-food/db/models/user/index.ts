@@ -22,6 +22,7 @@ const UserSchema = new Schema<UserModelType>(
   }
 );
 
+UserSchema.index({ email: 1 }, { unique: true });
 //schemadaa zoriulsan model create
 
 export const UserModel: Model<UserModelType> =
