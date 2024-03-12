@@ -13,16 +13,21 @@ export const Login = (props: any) => {
   const [btnColor, setBtnColor] = useState(false);
   const [data, setData] = useState({ email: "", password: "" });
   const { push } = useRouter();
+
   const url = "http://localhost:8000/login";
   const handleChanger = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setData({ ...data, [name]: value });
     console.log(data);
   };
-  const handleSubmit = async (ev: any) => {
-    console.log("bitch");
 
+  const handleSubmit = async (ev: any) => {
     ev.preventDefault();
+    if (!data.email || !data.password) {
+      setBtnColor(true);
+    } else {
+      setBtnColor(false);
+    }
     try {
       await axios.post(url, data);
       push("/");
