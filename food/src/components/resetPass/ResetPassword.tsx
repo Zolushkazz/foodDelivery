@@ -1,8 +1,7 @@
 "use client";
 
-import { Box, Container, InputLabel, Typography } from "@mui/material";
+import { Box, InputLabel, Stack, Typography } from "@mui/material";
 import { ButtonSign } from "../Button";
-import { SignupPasswordInput } from "../Signup/SignupInput";
 import { ChangeEvent, useEffect, useState } from "react";
 import { SendEmailPass } from "./SendEmailPass";
 import { NewPass } from "./NewPass";
@@ -15,18 +14,19 @@ type Password = {
   password: string;
   rePassword: string;
   otp: string;
+  handleChange: string;
 };
 
 export const ResetPassword = (props: any) => {
   const { push } = useRouter();
   const { name } = props;
   const [componentChange, setComponentChange] = useState(0);
-  const [email, setEmail] = useState();
   const [userData, setData] = useState<Password>({
     email: "",
     password: "",
     rePassword: "",
     otp: "",
+    handleChange: "",
   });
   const [error, setError] = useState("");
   const [otp, setOtp] = useState({});
@@ -35,6 +35,7 @@ export const ResetPassword = (props: any) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setData({ ...userData, [name]: value });
+    console.log(userData);
   };
 
   useEffect(() => {
@@ -45,7 +46,7 @@ export const ResetPassword = (props: any) => {
     }
   }, [userData]);
 
-  const handleButn = async () => {
+  const handleButn = async (props: any) => {
     if (componentChange === 0) {
       try {
         const { data } = await axios.post<string>(
@@ -65,25 +66,23 @@ export const ResetPassword = (props: any) => {
         return error.message;
       }
     } else if (componentChange === 1) {
-      const { data } = await axios.post<string>(
-        "http://localhost:8000/otpCheck",
-        {
-          email: userData.email,
-          otp: userData.otp,
-        }
-      );
+      const { data } = await axios.post("http://localhost:8000/otpCheck", {
+        email: userData.email,
+        otp: userData.otp,
+      });
       if (data === "invalid code") {
         setError("invalid code");
       } else {
-        setComponentChange(componentChange + 1);
         setError("");
+        setComponentChange(componentChange + 1);
       }
     } else if (componentChange === 2) {
+      setBtnColor(true);
       if (userData.password !== userData.rePassword) {
         alert("password is not matching");
         setComponentChange(2);
       } else {
-        await axios.post<string>("http://localhost:8000/passUpdate"),
+        await axios.post("http://localhost:8000/passUpdate"),
           {
             email: userData.email,
             password: userData.password,
@@ -95,7 +94,7 @@ export const ResetPassword = (props: any) => {
   };
 
   return (
-    <Container
+    <Stack
       sx={{
         width: "100vw",
         justifyContent: "center",
@@ -107,14 +106,23 @@ export const ResetPassword = (props: any) => {
       }}
     >
       {componentChange === 0 && (
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+        <Box
+          sx={{
+            justifyContent: "center",
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            width: "content",
+            gap: "20px",
+          }}
+        >
           <Typography
             sx={{ textAlign: "center", fontSize: "23px" }}
             variant="h1"
           >
             Нууц үг сэргээх
           </Typography>
-          <Box sx={{ width: "373px" }}>
+          <Box sx={{ width: "500px" }}>
             <InputLabel>Имэйл</InputLabel>
             <Input
               placeholder="Имэйл хаягаа оруулна уу"
@@ -138,23 +146,26 @@ export const ResetPassword = (props: any) => {
           </Box>
         </Box>
       )}
-      {componentChange === 1 && <SendEmailPass />}
-      {componentChange === 2 && <NewPass data={userData} setData={setData} />}
+      {componentChange === 1 && <SendEmailPass handleChange={handleChange} />}
+
+      {componentChange === 2 && (
+        <NewPass
+          data={userData}
+          setData={setData}
+          handleChange={handleChange}
+        />
+      )}
 
       <ButtonSign
         placeholder="Үргэлжлүүлэх"
-        borderColor=""
-        backgroundColor="#EEEFF2"
-        color="#1C20243D"
-        width="373px"
+        borderColor="0"
+        backgroundColor="primary.main"
+        color="common.white"
+        width="500px"
         height="50px"
         onClick={handleButn}
-        disabled={!btnColor}
-        style={{
-          backgroundColor: btnColor ? "rgba(24,186,81,255)" : "#EEEFF2",
-          color: btnColor ? "white" : "#1C20243D",
-        }}
+        disabled={!userData.email}
       />
-    </Container>
+    </Stack>
   );
 };

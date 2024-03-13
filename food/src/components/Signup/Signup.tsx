@@ -73,7 +73,6 @@ export const SignupComponents = (props: any) => {
   };
   console.log(userData);
 
-
   return (
     <Container
       sx={{
@@ -145,15 +144,12 @@ export const SignupComponents = (props: any) => {
           disabled={!btnColor}
           onClick={handleSubmit}
           backgroundColor=""
-          color=""
+          color="common.white"
           placeholder="Бүртгүүлэх"
-          borderColor=""
-          width="373px"
+          borderColor="0"
+          width="500px"
           height="50px"
-          style={{
-            backgroundColor: btnColor ? "rgba(24,186,81,255)" : "#EEEFF2",
-            color: btnColor ? "white" : "#1C20243D",
-          }}
+
         />
       </FormControl>
     </Container>

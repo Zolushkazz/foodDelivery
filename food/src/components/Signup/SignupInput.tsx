@@ -28,12 +28,15 @@ export const SignupPasswordInput = (props: SignupPasswordInputProps) => {
     <Stack>
       <FormControl
         sx={{
-          m: 0.5,
-          width: "370px",
-          height: "48px",
+          width: "500px",
+          height: "50px",
         }}
       >
         <OutlinedInput
+          sx={{
+            backgroundColor: "#f0f0f0",
+            border: "block",
+          }}
           placeholder="Нууц үгээ оруулна уу"
           label="Password"
           name={name}

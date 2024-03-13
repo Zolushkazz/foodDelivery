@@ -11,6 +11,7 @@ import Link from "next/link";
 
 export const UserModal = (props: any) => {
   const { handleChange } = props;
+  const [xBtn, setXbtn] = useState(false);
   const [btnColor, setBtnColor] = useState(false);
   const [data, setData] = useState({ email: "", password: "" });
   const { push } = useRouter();
@@ -35,8 +36,13 @@ export const UserModal = (props: any) => {
   const jumpToSignup = () => {
     push("/signup");
   };
+  const Delete = () => {
+    setXbtn(!xBtn);
+  };
+
   return (
     <Stack
+      onClick={Delete}
       sx={{
         width: "100vw",
         height: "100vh",
@@ -46,29 +52,28 @@ export const UserModal = (props: any) => {
         left: "0",
         display: "flex",
         alignItems: "center",
+        justifyContent: "center",
         backgroundColor: "rgba(0,0,0, 0.4)",
       }}
     >
-      <Stack sx={{ width: "100vw", height: "100vh", opacity: "0,6" }}></Stack>
       <Stack
         sx={{
-          width: "400px",
-          height: "500px",
+          width: "500px",
+          height: "600px",
           display: "flex",
           gap: "30px",
-          marginBottom: "20%",
           position: "relative",
           backgroundColor: "white",
-          paddingY: "10px",
+          justifyContent: "center",
           paddingX: "30px",
-          border: "1px solid",
+          border: "2px solid gray",
           borderRadius: "8px",
         }}
       >
         <Typography sx={{ fontSize: "23px", textAlign: "center" }}>
           Нэвтрэх
         </Typography>
-        <Stack sx={{ width: "373px" }}>
+        <Stack sx={{ width: "500px" }}>
           <InputLabel>Имэйл</InputLabel>
           <Input
             placeholder="И-мэйл ээ оруулна уу"
@@ -82,8 +87,8 @@ export const UserModal = (props: any) => {
         <Box
           sx={{
             position: "absolute",
-            top: 245,
-            right: 60,
+            top: 280,
+            right: 30,
           }}
         >
           <Link href="/resetPassword">Нууц үг сэргээх</Link>
@@ -101,7 +106,7 @@ export const UserModal = (props: any) => {
             backgroundColor="#EEEFF2"
             color="#1C20243D"
             borderColor=""
-            width="370px"
+            width="500px"
             height="50px"
             onClick={handleSubmit}
             disabled={data.email === "" || data.password === "" ? true : false}
@@ -116,7 +121,7 @@ export const UserModal = (props: any) => {
             backgroundColor="white"
             color="#000"
             borderColor="#18BA51"
-            width="370px"
+            width="500px"
             height="50px"
             onClick={jumpToSignup}
             disabled={false}

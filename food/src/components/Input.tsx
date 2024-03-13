@@ -15,6 +15,7 @@ export const Input = (props: AllInput) => {
         display: "flex",
         flexDirection: "column",
         gap: "10px",
+        width: "500px",
       }}
     >
       {text}

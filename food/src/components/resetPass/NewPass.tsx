@@ -9,28 +9,29 @@ type Password = {
   rePassword: string;
   email: string;
   otp: string;
+  handleChange: string;
 };
 
-type NewPassProps = {
-  setData: Dispatch<SetStateAction<Password>>;
-  data: Password;
-};
+// type NewPassProps = {
+//   setData: Dispatch<SetStateAction<Password>>;
+//   data: Password;
+// };
+// { data, setData }: NewPassProps,
 
-export const NewPass = ({ data, setData }: NewPassProps) => {
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setData({ ...data, [name]: value });
-  };
+export const NewPass = (props: any) => {
+  const { handleChange } = props;
+  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = event.target;
+  //   setData({ ...data, [name]: value });
+  // };
   return (
     <Container
       sx={{
-        width: "100vw",
         justifyContent: "center",
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
         gap: "30px",
-        marginY: "9%",
       }}
     >
       <Typography sx={{ textAlign: "center", fontSize: "23px" }} variant="h1">

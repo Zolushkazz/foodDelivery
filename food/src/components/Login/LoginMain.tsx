@@ -7,6 +7,7 @@ import { ChangeEvent, useState } from "react";
 import { Input } from "../Input";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Link from "next/link";
 
 export const Login = (props: any) => {
   const { handleChange } = props;
@@ -52,7 +53,7 @@ export const Login = (props: any) => {
     >
       <Stack
         sx={{
-          width: "372px",
+          width: "500px",
           display: "flex",
           gap: "30px",
           marginBottom: "20px",
@@ -80,7 +81,7 @@ export const Login = (props: any) => {
             right: 10,
           }}
         >
-          Нууц үг сэргээх
+          <Link href="/resetPassword">Нууц үг сэргээх</Link>
         </Box>
         <Box
           sx={{
@@ -92,29 +93,26 @@ export const Login = (props: any) => {
         >
           <ButtonSign
             placeholder="Нэвтрэх"
-            backgroundColor="#EEEFF2"
-            color="#1C20243D"
-            borderColor=""
-            width="370px"
+            backgroundColor="primary.main"
+            color="common.white"
+            borderColor="0"
+            width="500px"
             height="50px"
             onClick={handleSubmit}
             disabled={data.email === "" || data.password === "" ? true : false}
-            style={{
-              backgroundColor: btnColor ? "rgba(24,186,81,255)" : "#EEEFF2",
-              color: btnColor ? "white" : "#1C20243D",
-            }}
+
           />
           <Typography sx={{ textAlign: "center" }}>эсвэл</Typography>
           <ButtonSign
             placeholder="Бүртгүүлэх"
-            backgroundColor="white"
-            color="#000"
+            backgroundColor="#eeeff2"
+            color="gray"
             borderColor="#18BA51"
-            width="370px"
+            width="500px"
             height="50px"
             onClick={jumpToSignup}
             disabled={false}
-            style={{}}
+
           />
         </Box>
       </Stack>

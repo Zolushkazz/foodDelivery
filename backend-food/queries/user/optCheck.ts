@@ -7,11 +7,11 @@ const getUserByEmail = async (email: string) => {
 };
 
 export const OptChecker = async (req: Request) => {
-  const { code, email } = req.body;
+  const { otp, email } = req.body;
   try {
     const user = await getUserByEmail(email);
 
-    if (user?.otp === code) {
+    if (user?.otp === otp) {
       await UserModel.updateOne({ email: user?.email }, { $set: { otp: "" } });
       return "success";
     } else {

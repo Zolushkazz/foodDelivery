@@ -9,7 +9,7 @@ type ButtonStyle = {
   height: string;
   onClick: any;
   disabled: boolean;
-  style: any;
+
 };
 
 export const ButtonSign = (props: ButtonStyle) => {
@@ -22,7 +22,7 @@ export const ButtonSign = (props: ButtonStyle) => {
     borderColor,
     onClick,
     disabled,
-    style,
+
   } = props;
 
   return (
@@ -30,14 +30,14 @@ export const ButtonSign = (props: ButtonStyle) => {
       onClick={onClick}
       variant="contained"
       sx={{
-        backgroundColor: { backgroundColor },
-        color: { color },
-        borderColor: { borderColor },
-        width: { width },
-        height: { height },
+        backgroundColor: backgroundColor,
+        color: color,
+        border: `1px solid ${borderColor}`,
+        width: width,
+        height: height,
       }}
       disabled={disabled}
-      style={style}
+
     >
       {placeholder}
     </Button>

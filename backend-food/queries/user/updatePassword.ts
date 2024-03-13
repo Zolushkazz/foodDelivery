@@ -20,6 +20,7 @@ export const UpdatePass = async (req: Request) => {
       { email: user.email },
       { $set: { password: hashedPass } }
     );
+    return updatePass;
   } catch (error: any) {
     return error.message;
   }
