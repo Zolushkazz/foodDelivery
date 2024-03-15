@@ -29,7 +29,6 @@ export const ResetPassword = (props: any) => {
     handleChange: "",
   });
   const [error, setError] = useState("");
-  const [otp, setOtp] = useState({});
   const [btnColor, setBtnColor] = useState(false);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

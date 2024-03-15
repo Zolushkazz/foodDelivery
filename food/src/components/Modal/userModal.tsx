@@ -103,17 +103,13 @@ export const UserModal = (props: any) => {
         >
           <ButtonSign
             placeholder="Нэвтрэх"
-            backgroundColor="#EEEFF2"
+            backgroundColor="primary.main"
             color="#1C20243D"
             borderColor=""
             width="500px"
             height="50px"
             onClick={handleSubmit}
             disabled={data.email === "" || data.password === "" ? true : false}
-            style={{
-              backgroundColor: btnColor ? "rgba(24,186,81,255)" : "#EEEFF2",
-              color: btnColor ? "white" : "#1C20243D",
-            }}
           />
           <Typography sx={{ textAlign: "center" }}>эсвэл</Typography>
           <ButtonSign
@@ -125,7 +121,6 @@ export const UserModal = (props: any) => {
             height="50px"
             onClick={jumpToSignup}
             disabled={false}
-            style={{}}
           />
         </Box>
       </Stack>

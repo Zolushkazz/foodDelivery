@@ -2,19 +2,20 @@
 
 import Image from "next/image";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { Grid, InputAdornment, Stack, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { useState } from "react";
-import { UserModal } from "../Modal/userModal";
+import { UserInfo } from "../UserInfo";
+// import { UserModal } from "../Modal/userModal";
 
 export const SignupNavbar = () => {
   const [showModal, setShowModal] = useState(false);
+
   const handleShowModal = () => {
-    setShowModal(!showModal);
+    window.location.href = "/userInfo";
   };
 
   return (
@@ -70,11 +71,11 @@ export const SignupNavbar = () => {
             sx={{ display: "flex", gap: "10px", alignItems: "center" }}
           >
             <PersonOutlineOutlinedIcon />
-            Нэвтрэх
+            Хэрэглэгч
           </Box>
         </Box>
       </Box>
-      {showModal && <UserModal />}
+      {showModal && <UserInfo />}
     </Stack>
   );
 };

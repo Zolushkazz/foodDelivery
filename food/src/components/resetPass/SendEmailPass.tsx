@@ -29,7 +29,7 @@ export const SendEmailPass = (props: any) => {
     <Container
       sx={{
         justifyContent: "center",
-        display: "flex",
+        display: "flex", 
         alignItems: "center",
         flexDirection: "column",
         gap: "30px",
