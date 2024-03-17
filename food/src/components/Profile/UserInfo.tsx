@@ -7,6 +7,7 @@ import { CustomInput } from "./CustomInput";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
 import OutputOutlinedIcon from "@mui/icons-material/OutputOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import Link from "next/link";
 
 type UserInformation = {
   name: string;
@@ -88,21 +89,23 @@ export const UserInfo = () => {
             </Stack>
             <Typography fontSize={13}>Захиалгын түүх</Typography>
           </Button>
-          <Button
-            sx={{
-              gap: "15px",
-              color: "black",
-              px: "16px",
-              py: "8px",
-              justifyContent: "start",
-              width: "100%",
-            }}
-          >
-            <Stack>
-              <OutputOutlinedIcon />
-            </Stack>
-            <Typography fontSize={13}>Гарах</Typography>
-          </Button>
+          <Link href={"/login"} style={{ textDecoration: "none" }}>
+            <Button
+              sx={{
+                gap: "15px",
+                color: "black",
+                px: "16px",
+                py: "8px",
+                justifyContent: "start",
+                width: "100%",
+              }}
+            >
+              <Stack>
+                <OutputOutlinedIcon />
+              </Stack>
+              <Typography fontSize={13}>Гарах</Typography>
+            </Button>
+          </Link>
         </Stack>
       </Box>
     </Box>

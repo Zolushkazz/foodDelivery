@@ -6,7 +6,7 @@ const getUserByEmail = async (email: string) => {
   return user;
 };
 
-export const OptChecker = async (req: Request) => {
+export const OtpChecker = async (req: Request) => {
   const { otp, email } = req.body;
   try {
     const user = await getUserByEmail(email);
@@ -17,7 +17,7 @@ export const OptChecker = async (req: Request) => {
     } else {
       return "invalid code";
     }
-  } catch (er: any) {
-    throw new Error(er.message);
+  } catch (error: any) {
+    throw new Error(error.message);
   }
 };

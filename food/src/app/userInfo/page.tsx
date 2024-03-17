@@ -1,4 +1,4 @@
-import { UserInfo } from "@/components/UserInfo";
+import { UserInfo } from "@/components/Profile/UserInfo";
 import { Stack } from "@mui/material";
 import React from "react";
 

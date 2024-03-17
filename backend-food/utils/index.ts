@@ -1,5 +1,7 @@
 import bcrypt from "bcrypt";
+import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
+import { UserModel } from "../db/models";
 
 export const passwordHash = (password: string) => {
   const salt = bcrypt.genSaltSync(15);
@@ -14,7 +16,11 @@ export const compareHash = async (password: string, hashedPassword: string) => {
   return isPasswordRight;
 };
 
-export const tokenGenerate = async (userId: string) => {
-  const token = await jwt.sign({ userId }, "secret", { expiresIn: "1d" });
-  return token;
-};
+// export const tokenGenerate = async (userId: string, res: Response) => {
+//
+//     const token = jwt.sign({ userId }, process.env.JWT_SECRET || "secret", {
+//       expiresIn: "1d",
+//     });
+//     res.status(200).json({ token });
+//   }
+// };

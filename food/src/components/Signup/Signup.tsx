@@ -60,7 +60,8 @@ export const SignupComponents = (props: any) => {
     if (password !== rePassword) return alert("Pass buruu");
 
     try {
-      await axios.post(url, userData);
+      const { data } = await axios.post(url, userData);
+      localStorage.setItem("token", data.token);
       push("/");
     } catch (err) {
       console.log(err);
@@ -149,7 +150,6 @@ export const SignupComponents = (props: any) => {
           borderColor="0"
           width="500px"
           height="50px"
-
         />
       </FormControl>
     </Container>

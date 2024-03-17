@@ -12,25 +12,26 @@ import Link from "next/link";
 export const Login = (props: any) => {
   const { handleChange } = props;
   const [btnColor, setBtnColor] = useState(false);
-  const [data, setData] = useState({ email: "", password: "" });
+  const [userData, setData] = useState({ email: "", password: "" });
   const { push } = useRouter();
 
   const url = "http://localhost:8000/login";
   const handleChanger = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setData({ ...data, [name]: value });
-    console.log(data);
+    setData({ ...userData, [name]: value });
+    console.log(userData);
   };
 
   const handleSubmit = async (ev: any) => {
     ev.preventDefault();
-    if (!data.email || !data.password) {
+    if (!userData.email || !userData.password) {
       setBtnColor(true);
     } else {
       setBtnColor(false);
     }
     try {
-      await axios.post(url, data);
+      const { data } = await axios.post(url, userData);
+      localStorage.setItem("token", data.token);
       push("/");
     } catch (err) {
       alert("Invalid email or password");
@@ -81,7 +82,12 @@ export const Login = (props: any) => {
             right: 10,
           }}
         >
-          <Link href="/resetPassword">Нууц үг сэргээх</Link>
+          <Link
+            href="/resetPassword"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            Нууц үг сэргээх
+          </Link>
         </Box>
         <Box
           sx={{
@@ -99,20 +105,20 @@ export const Login = (props: any) => {
             width="500px"
             height="50px"
             onClick={handleSubmit}
-            disabled={data.email === "" || data.password === "" ? true : false}
-
+            disabled={
+              userData.email === "" || userData.password === "" ? true : false
+            }
           />
           <Typography sx={{ textAlign: "center" }}>эсвэл</Typography>
           <ButtonSign
             placeholder="Бүртгүүлэх"
-            backgroundColor="#eeeff2"
+            backgroundColor="white"
             color="gray"
             borderColor="#18BA51"
             width="500px"
             height="50px"
             onClick={jumpToSignup}
             disabled={false}
-
           />
         </Box>
       </Stack>

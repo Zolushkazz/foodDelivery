@@ -1,4 +1,4 @@
-import { Box, Container, Divider, Stack, Typography } from "@mui/material";
+import { Box, Divider, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { ChoicesCategory } from "./Choices";
 import { AllFoods } from "./AllFoods";
@@ -32,10 +32,12 @@ export const HomePage = () => {
           <Typography variant="h1">Pinecone</Typography>
           <Typography variant="h1">Food Delivery</Typography>
           <Divider sx={{ width: "100%", borderColor: "white" }} />
-          <Typography sx={{ fontSize: "27px" }}>
+          <Typography variant="h5" sx={{ fontSize: "md" }}>
             We will delivery the most fresh and most delicious
           </Typography>
-          <Typography sx={{ fontSize: "27px" }}>food in your hand</Typography>
+          <Typography variant="h5" sx={{ fontSize: "md" }}>
+            food in your hand
+          </Typography>
         </Box>
         <Box sx={{ position: "absolute", zIndex: "40", right: "10%" }}>
           <Image src="/foodHome.png" width={900} height={700} alt="" />

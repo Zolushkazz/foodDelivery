@@ -28,8 +28,8 @@ export const Get = async () => {
   try {
     const { data } = await axios.get<FoodCatalog[]>(url);
     return data;
-  } catch (err) {
-    alert("Invalid email or password");
+  } catch (err: any) {
+    return err.message;
   }
 };
 

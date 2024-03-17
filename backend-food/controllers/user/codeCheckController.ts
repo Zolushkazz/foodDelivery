@@ -1,10 +1,10 @@
 import { Response, Request } from "express";
 import { ResetQuery } from "../../queries";
-import { OptChecker } from "../../queries/user/optCheck";
+import { OtpChecker } from "../../queries/user/optCheck";
 
 export const codeCheckController = async (req: Request, res: Response) => {
   try {
-    const result = await OptChecker(req);
+    const result = await OtpChecker(req);
 
     res.send(result);
   } catch (error: any) {
