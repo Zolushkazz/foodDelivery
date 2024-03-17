@@ -5,6 +5,6 @@ export const getFoodsQuery = async (req: Request) => {
   const { filter = {} } = req.body;
   //empty is better than undefined
 
-  const allFoods = await FoodModel.find();
+  const allFoods = await FoodModel.find(filter);
   return allFoods;
 };

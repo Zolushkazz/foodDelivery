@@ -2,6 +2,7 @@ import { Box, Divider, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { ChoicesCategory } from "./Choices";
 import { AllFoods } from "./AllFoods";
+import { FoodDetail } from "../Modal/foodDetail";
 
 export const HomePage = () => {
   return (
@@ -45,6 +46,7 @@ export const HomePage = () => {
       </Box>
       <ChoicesCategory />
       <AllFoods />
+      <FoodDetail />
     </Stack>
   );
 };

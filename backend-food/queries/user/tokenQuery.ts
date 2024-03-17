@@ -8,7 +8,7 @@ type Type = {
   exp: number;
 };
 
-export const tokenVerify: RequestHandler = async (req, res) => {
+export const tokenVerify = async (req: Request) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
 

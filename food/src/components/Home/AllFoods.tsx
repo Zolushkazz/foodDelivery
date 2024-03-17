@@ -1,7 +1,10 @@
+"use client";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import axios from "axios";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FoodDetail } from "../Modal/foodDetail";
 
 //   useEffect(() => {
 
@@ -35,7 +38,7 @@ export const Get = async () => {
 
 export const AllFoods = async () => {
   const data = await Get();
-
+  const pathname = usePathname();
   return (
     <Box width={"100vw"} paddingLeft={"10%"}>
       <Box
@@ -61,6 +64,9 @@ export const AllFoods = async () => {
         {data?.map((el, index: number) => {
           return (
             <Box
+              onClick={() => {
+                pathname === data._id ? <FoodDetail /> : "";
+              }}
               key={index}
               sx={{
                 width: "550px",
