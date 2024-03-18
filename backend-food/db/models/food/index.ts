@@ -14,10 +14,10 @@ const FoodSchema = new Schema<FoodModelType>(
     image: { type: String, required: true },
     ingredients: { type: String, required: true },
     price: { type: String, required: true },
+  },
+  {
+    timestamps: true,
   }
-  // {
-  //   timestamps: true,
-  // }
 );
 
 //schemadaa zoriulsan model create

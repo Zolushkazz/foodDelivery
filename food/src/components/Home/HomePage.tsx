@@ -46,7 +46,6 @@ export const HomePage = () => {
       </Box>
       <ChoicesCategory />
       <AllFoods />
-      <FoodDetail />
     </Stack>
   );
 };

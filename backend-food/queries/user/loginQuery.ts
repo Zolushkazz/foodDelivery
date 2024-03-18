@@ -9,13 +9,15 @@ const getUserByEmail = async (email: string) => {
 };
 
 export const LoginQuery = async (req: Request) => {
+  const { email, password } = req.body;
   try {
-    const { email, password } = req.body;
-
     const user = await getUserByEmail(email);
+    console.log(user);
+
     if (!user) {
       throw new Error("User not found");
     }
+    console.log(email);
 
     const isPasswordTrue = await compareHash(password, user.password);
     console.log(isPasswordTrue);
@@ -33,6 +35,8 @@ export const LoginQuery = async (req: Request) => {
     );
     return token;
   } catch (error: any) {
-    throw new Error("Login failed");
+    console.log("errr");
+
+    throw new Error(error.message);
   }
 };

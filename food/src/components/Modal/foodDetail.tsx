@@ -1,12 +1,31 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
-import { Get } from "../Home/AllFoods";
 import Image from "next/image";
+import axios from "axios";
+
+type FoodCatalog = {
+  _id: string;
+  name: string;
+  image: string;
+  ingredients: string;
+  price: string;
+};
+
+export const GetFood = async () => {
+  const url = "http://localhost:8000/food";
+  try {
+    const { data } = await axios.get<FoodCatalog[]>(url);
+    return data;
+  } catch (err: any) {
+    return err.message;
+  }
+};
 
 export const FoodDetail = async () => {
-  const data = await Get();
+  const data = await GetFood();
+  // console.log(data);
 
   //   if (data._id !== ) {
-  //     return "Not matching";
+  //     return "Not matching";s
   //   } else {
   //   }
 

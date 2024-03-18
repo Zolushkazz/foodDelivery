@@ -21,15 +21,12 @@ export const SendEmailPass = (props: any) => {
     otp: "",
     handleChange: "",
   });
-  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = event.target;
-  //   setData({ ...userData, [name]: value });
-  // };
+
   return (
     <Container
       sx={{
         justifyContent: "center",
-        display: "flex", 
+        display: "flex",
         alignItems: "center",
         flexDirection: "column",
         gap: "30px",

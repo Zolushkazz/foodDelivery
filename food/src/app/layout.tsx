@@ -5,6 +5,7 @@ import { SignupNavbar } from "@/components/Signup/SignupNavbar";
 import { Footer } from "@/components/Footer";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "@/components/theme";
+import { DataProvider } from "@/components/context/userContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,11 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider theme={theme}>
-          <SignupNavbar />
-          {children}
-          <Footer />
-        </ThemeProvider>
+        <DataProvider>
+          <ThemeProvider theme={theme}>
+            <SignupNavbar />
+            {children}
+            <Footer />
+          </ThemeProvider>
+        </DataProvider>
       </body>
     </html>
   );

@@ -17,10 +17,8 @@ export const compareHash = async (password: string, hashedPassword: string) => {
 };
 
 // export const tokenGenerate = async (userId: string, res: Response) => {
-//
-//     const token = jwt.sign({ userId }, process.env.JWT_SECRET || "secret", {
-//       expiresIn: "1d",
-//     });
-//     res.status(200).json({ token });
-//   }
+//   const token = jwt.sign({ userId }, process.env.JWT_SECRET || "secret", {
+//     expiresIn: "1d",
+//   });
+//   res.status(200).json({ token });
 // };

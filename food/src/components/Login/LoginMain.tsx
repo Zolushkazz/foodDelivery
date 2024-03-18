@@ -31,8 +31,13 @@ export const Login = (props: any) => {
     }
     try {
       const { data } = await axios.post(url, userData);
-      localStorage.setItem("token", data.token);
-      push("/");
+
+      localStorage.setItem("token", data);
+      if (data === "invalid code") {
+        console.log("err");
+      } else {
+        push("/");
+      }
     } catch (err) {
       alert("Invalid email or password");
     }

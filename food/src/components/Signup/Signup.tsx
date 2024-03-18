@@ -61,8 +61,7 @@ export const SignupComponents = (props: any) => {
 
     try {
       const { data } = await axios.post(url, userData);
-      localStorage.setItem("token", data.token);
-      push("/");
+      push("/login");
     } catch (err) {
       console.log(err);
     }

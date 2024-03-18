@@ -7,18 +7,26 @@ import { Grid, InputAdornment, Stack, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import { useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { UserInfo } from "../Profile/UserInfo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-// import { UserModal } from "../Modal/userModal";
+import { UserModal } from "../Modal/userModal";
+import { DataContext } from "../context/userContext";
 
-export const SignupNavbar = () => {
+export const SignupNavbar = (props: any) => {
   const [showModal, setShowModal] = useState(false);
+  const { isLoggedIn } = useContext(DataContext);
+  const [search, setSearch] = useState("");
   const pathname = usePathname();
-  // const handleShowModal = () => {
-  //   window.location.href = "/userInfo";
-  // };
+
+  const handleShowModal = () => {
+    setShowModal(!showModal);
+  };
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setSearch(value);
+  };
 
   return (
     <Stack>
@@ -63,13 +71,17 @@ export const SignupNavbar = () => {
           }}
         >
           <TextField
+            name="search"
+            onChange={handleChange}
             placeholder="Хайх"
             inputProps={{ style: { padding: "8px 10px" } }}
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon fontSize="medium" />
-                </InputAdornment>
+                <Link href={{ pathname: "search", query: { id: search } }}>
+                  <InputAdornment position="start">
+                    <SearchIcon fontSize="medium" />
+                  </InputAdornment>
+                </Link>
               ),
             }}
           ></TextField>
@@ -77,8 +89,24 @@ export const SignupNavbar = () => {
             <ShoppingBasketOutlinedIcon />
             Сагс
           </Typography>
-          <Link href={"/userInfo"} style={{ textDecoration: "none" }}>
+          {isLoggedIn ? (
+            <Link href={"/userInfo"} style={{ textDecoration: "none" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: "10px",
+                  alignItems: "center",
+                  cursor: "pointer",
+                  color: pathname === "/userInfo" ? "#18BA51" : "black",
+                }}
+              >
+                <PersonOutlineOutlinedIcon />
+                Хэрэглэгч
+              </Box>
+            </Link>
+          ) : (
             <Box
+              onClick={handleShowModal}
               sx={{
                 display: "flex",
                 gap: "10px",
@@ -88,12 +116,12 @@ export const SignupNavbar = () => {
               }}
             >
               <PersonOutlineOutlinedIcon />
-              Хэрэглэгч
+              Нэвтрэх
             </Box>
-          </Link>
+          )}
         </Box>
       </Box>
-      {showModal && <UserInfo />}
+      {showModal && <UserModal handleShowModal={handleShowModal} />}
     </Stack>
   );
 };

@@ -10,7 +10,7 @@ import axios from "axios";
 import Link from "next/link";
 
 export const UserModal = (props: any) => {
-  const { handleChange } = props;
+  const { handleChange, handleShowModal } = props;
   const [xBtn, setXbtn] = useState(false);
   const [btnColor, setBtnColor] = useState(false);
   const [data, setData] = useState({ email: "", password: "" });
@@ -36,26 +36,31 @@ export const UserModal = (props: any) => {
   const jumpToSignup = () => {
     push("/signup");
   };
-  const Delete = () => {
-    setXbtn(!xBtn);
-  };
 
   return (
     <Stack
-      onClick={Delete}
       sx={{
         width: "100vw",
         height: "100vh",
         position: "fixed",
-        zIndex: "40",
+        zIndex: "45",
         top: "0",
         left: "0",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "rgba(0,0,0, 0.4)",
       }}
     >
+      <Stack
+        onClick={handleShowModal}
+        sx={{
+          width: "100vw",
+          height: "100vh",
+          backgroundColor: "rgba(0,0,0, 0.4)",
+          position: "absolute",
+          zIndex: "-1",
+        }}
+      ></Stack>
       <Stack
         sx={{
           width: "500px",
@@ -73,6 +78,7 @@ export const UserModal = (props: any) => {
         <Typography sx={{ fontSize: "23px", textAlign: "center" }}>
           Нэвтрэх
         </Typography>
+
         <Stack sx={{ width: "500px" }}>
           <InputLabel>Имэйл</InputLabel>
           <Input

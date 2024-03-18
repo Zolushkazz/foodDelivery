@@ -1,10 +1,11 @@
 "use client";
-import { Box, Grid, Stack, Typography } from "@mui/material";
-import axios from "axios";
+import { Box, Container, Grid, Stack, Typography } from "@mui/material";
+import axios, { AxiosError } from "axios";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FoodDetail } from "../Modal/foodDetail";
+import { FoodCard } from "./FoodCard";
 
 //   useEffect(() => {
 
@@ -26,21 +27,26 @@ type FoodCatalog = {
   price: string;
 };
 
-export const Get = async () => {
+const getFoods = async () => {
   const url = "http://localhost:8000/food";
-  try {
-    const { data } = await axios.get<FoodCatalog[]>(url);
-    return data;
-  } catch (err: any) {
-    return err.message;
-  }
+
+  const { data } = await axios.get<FoodCatalog[]>(url);
+  return data;
 };
 
 export const AllFoods = async () => {
-  const data = await Get();
-  const pathname = usePathname();
+  const [userData, setUserData] = useState({
+    _id: "",
+    name: "",
+    image: "",
+    ingredients: "",
+    price: "",
+  });
+
+  const foods = await getFoods();
+
   return (
-    <Box width={"100vw"} paddingLeft={"10%"}>
+    <Stack width={"89%"} paddingLeft={"10%"}>
       <Box
         sx={{
           width: "100%",
@@ -57,47 +63,14 @@ export const AllFoods = async () => {
       <Box
         sx={{
           display: "flex",
-          gap: "15px",
+          gap: "5px",
           flexWrap: "wrap",
         }}
       >
-        {data?.map((el, index: number) => {
-          return (
-            <Box
-              onClick={() => {
-                pathname === data._id ? <FoodDetail /> : "";
-              }}
-              key={index}
-              sx={{
-                width: "550px",
-                height: "400px",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                  transition: "all 0.2s ease-in-out",
-                },
-              }}
-            >
-              <Box sx={{ position: "relative" }}>
-                <Image
-                  src={el.image}
-                  width={420}
-                  height={300}
-                  alt=""
-                  style={{ border: "0", borderRadius: "10px" }}
-                />
-              </Box>
-              <Box>
-                <Typography fontSize={23}>{el.name}</Typography>
-                <Box>
-                  <Typography fontSize={18} color={"#18BA51"}>
-                    {el.price}
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
-          );
-        })}
+        {foods.map((food, index) => (
+          <FoodCard {...food} key={index} />
+        ))}
       </Box>
-    </Box>
+    </Stack>
   );
 };
