@@ -6,21 +6,11 @@ import { FoodCard } from "../Home/FoodCard";
 import Image from "next/image";
 import { SearchNotFound } from "./SearchNotFound";
 
-type FoodCatalog = {
-  _id: string;
-  name: string;
-  image: string;
-  ingredients: string;
-  price: string;
-};
-
 type SearchFoodProps = {
   data: FoodCatalog[];
 };
 
 export const SearchFood = async ({ data }: SearchFoodProps) => {
-  const [search, setSearch] = useState("");
-
   return (
     <Stack
       direction={"row"}
