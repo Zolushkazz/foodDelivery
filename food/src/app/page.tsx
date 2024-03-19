@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <Stack sx={{ width: "100vw" }}>
       <HomePage />
-      <FoodDetail />
+      {/* <FoodDetail /> */}
     </Stack>
   );
 };

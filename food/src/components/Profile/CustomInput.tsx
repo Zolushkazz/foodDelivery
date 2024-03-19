@@ -11,9 +11,17 @@ import {
   TextField,
   TextFieldProps,
 } from "@mui/material";
+import { useState } from "react";
 
 export const CustomInput = (props: TextFieldProps) => {
+  const [edit, setEdit] = useState(false);
+
   const { variant = "standard", label, type = "text", ...rest } = props;
+
+  const handleEdit = () => {
+    setEdit(!edit);
+    console.log("edit is:", edit);
+  };
 
   return (
     <Stack gap={1}>
@@ -59,7 +67,7 @@ export const CustomInput = (props: TextFieldProps) => {
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment position="end">
+            <InputAdornment onClick={handleEdit} position="end">
               <EditOutlinedIcon
                 sx={{
                   color: "primary.main",

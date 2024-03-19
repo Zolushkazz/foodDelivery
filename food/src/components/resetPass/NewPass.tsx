@@ -20,10 +20,7 @@ type Password = {
 
 export const NewPass = (props: any) => {
   const { handleChange } = props;
-  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = event.target;
-  //   setData({ ...data, [name]: value });
-  // };
+
   return (
     <Container
       sx={{

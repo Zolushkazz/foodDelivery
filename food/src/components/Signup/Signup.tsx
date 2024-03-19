@@ -61,7 +61,17 @@ export const SignupComponents = (props: any) => {
 
     try {
       const { data } = await axios.post(url, userData);
-      push("/login");
+      if (
+        data ===
+        `E11000 duplicate key error collection: test.users index: email_1 dup key: { email: "${userData.email}" }`
+      ) {
+        alert("Email already exists");
+        return;
+      } else {
+        push("/login");
+      }
+
+      console.log("success");
     } catch (err) {
       console.log(err);
     }
