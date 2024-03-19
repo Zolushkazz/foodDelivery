@@ -14,8 +14,17 @@ export const createUserQuery = async (req: Request) => {
       phone,
       password: hashedPass,
     });
+
+    const getUserByEmail = async (email: string) => {
+      const userEmail = await UserModel.findOne({ email: email });
+      return userEmail;
+    };
+    const checkUser = await getUserByEmail(user?.email);
+    if (!checkUser) {
+      throw new Error("Email is not existed");
+    }
     return user;
   } catch (error: any) {
-    console.log(error.message);
+    return error.message;
   }
 };
