@@ -1,7 +1,7 @@
 import { Response, Request, response, request } from "express";
 import { UserModel } from "../../db/models/user";
 import { compareHash } from "../../utils";
-import jwt from "jsonwebtoken";
+import jwt, { GetPublicKeyOrSecret, Secret } from "jsonwebtoken";
 
 const getUserByEmail = async (email: string) => {
   const user = await UserModel.findOne({ email: email });

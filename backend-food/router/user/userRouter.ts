@@ -16,7 +16,7 @@ userRouter.post("/login", LoginController);
 userRouter.post("/resetPass", ResetPassController);
 userRouter.post("/otpCheck", codeCheckController);
 userRouter.post("/passUpdate", updatePassController);
-userRouter.post("/users/refresh", refreshController);
+userRouter.get("/users/refresh", refreshController);
 userRouter.post("/verify", VerifyToken);
 userRouter.post("/updateAll", updateAllController);
 

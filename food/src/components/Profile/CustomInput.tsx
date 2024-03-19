@@ -67,8 +67,9 @@ export const CustomInput = (props: TextFieldProps) => {
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment onClick={handleEdit} position="end">
+            <InputAdornment position="end">
               <EditOutlinedIcon
+                onClick={handleEdit}
                 sx={{
                   color: "primary.main",
                 }}

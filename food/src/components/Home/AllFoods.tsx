@@ -1,8 +1,7 @@
 "use client";
-import { Box, Container, Grid, Stack, Typography } from "@mui/material";
-import axios, { AxiosError } from "axios";
+import { Box, Stack, Typography } from "@mui/material";
+import axios from "axios";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FoodDetail } from "../Modal/foodDetail";
 import { FoodCard } from "./FoodCard";

@@ -18,14 +18,11 @@ export const tokenVerify = async (req: Request) => {
     }
 
     const secret = process.env.JWT_SECRET as Secret | GetPublicKeyOrSecret;
-
     console.log(secret);
 
     const decoded = jwt.verify(token, secret) as unknown;
 
     const id = decoded as Type;
-
-    console.log(id);
 
     const getUserByID = async (id: any) => {
       const user = await UserModel.findOne({ _id: id });

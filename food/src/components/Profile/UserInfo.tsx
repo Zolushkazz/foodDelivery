@@ -18,9 +18,6 @@ type UserInformation = {
   phone: string;
 };
 
-type SaveBtnProps = {
-  handleSubmit: () => void;
-};
 type OrderHistoryProps = {
   handleModal: () => void;
 };
@@ -61,11 +58,11 @@ const OrderHistory = ({ handleModal }: OrderHistoryProps) => {
     </Stack>
   );
 };
-type SaveButtonProps = {
+type SaveBtnProps = {
   handleSubmit: () => void;
 };
 
-const SaveButton = ({ handleSubmit }: SaveButtonProps) => {
+const SaveButton = ({ handleSubmit }: SaveBtnProps) => {
   return (
     <Stack
       onClick={handleSubmit}
@@ -208,7 +205,7 @@ export const UserInfo = () => {
       <Typography py={2}>{userData.name}</Typography>
 
       <Box>
-        <Stack gap={3}>
+        <Stack gap={3} marginBottom={3}>
           <CustomInput
             onChange={handleChange}
             label="Таны нэр"
@@ -228,6 +225,11 @@ export const UserInfo = () => {
             value={userData.email}
           />
         </Stack>
+        <ConditionalRenderer
+          edit={edit}
+          handleModal={handleModal}
+          handleSubmit={handleSubmit}
+        />
       </Box>
     </Box>
   );

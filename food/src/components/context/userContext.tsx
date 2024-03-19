@@ -46,6 +46,15 @@ export const DataProvider = ({ children }: any) => {
   const accessToken =
     typeof window !== "undefined" && localStorage.getItem("token");
 
+  console.log(accessToken);
+
+  const contextValue = {
+    loading,
+    isLoggedIn,
+    loggedInUserData,
+    foodCatalog,
+  };
+
   useEffect(() => {
     const getFoods = async () => {
       try {
@@ -70,14 +79,14 @@ export const DataProvider = ({ children }: any) => {
               },
             }
           );
-          
+
           console.log(data);
 
           setIsLoggedIn(true);
           setLoggedInUserData(data);
           setLoading(false);
-        } catch (error) {
-          console.log("error from get logged in user");
+        } catch (error: any) {
+          console.log(error.message);
         }
       };
 
@@ -89,16 +98,7 @@ export const DataProvider = ({ children }: any) => {
   }, [accessToken]);
 
   return (
-    <DataContext.Provider
-      value={{
-        loading,
-        isLoggedIn,
-        loggedInUserData,
-        foodCatalog,
-      }}
-    >
-      {children}
-    </DataContext.Provider>
+    <DataContext.Provider value={contextValue}>{children}</DataContext.Provider>
   );
 };
 
