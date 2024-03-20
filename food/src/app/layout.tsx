@@ -33,3 +33,19 @@ export default function RootLayout({
     </html>
   );
 }
+
+import Head from "next/head";
+import { AppProps } from "next/app";
+
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
+}
+
+export { MyApp };

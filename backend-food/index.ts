@@ -1,4 +1,4 @@
-import { CategoryModel, ConnectDb } from "./db";
+import { ConnectDb } from "./db";
 import express from "express";
 import cors from "cors";
 import userRouter from "./router/user/userRouter";
