@@ -54,10 +54,25 @@ export const SignupNavbar = (props: any) => {
                 Нүүр
               </Typography>
             </Link>
-            <Typography component="h2" variant="h5" sx={{ fontSize: "20px" }}>
-              Хоолны цэс
-            </Typography>
-            <Typography component="h2" variant="h5" sx={{ fontSize: "20px" }}>
+            <Link href={"/foodCategory"} style={{ textDecoration: "none" }}>
+              <Typography
+                component="h2"
+                variant="h5"
+                sx={{
+                  fontSize: "20px",
+                  color: pathname === "/foodCategory" ? "#18BA51" : "black",
+                }}
+              >
+                Хоолны цэс
+              </Typography>
+            </Link>
+            <Typography
+              component="h2"
+              variant="h5"
+              sx={{
+                fontSize: "20px",
+              }}
+            >
               Хүргэлтийн бүс
             </Typography>
           </Box>
