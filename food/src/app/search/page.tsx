@@ -27,9 +27,9 @@ const searchFoods = async (id?: string) => {
     },
   };
 
-  const { data } = await axios.get<FoodCatalog[]>(
-    "http://localhost:8000/food",
-    { data: body }
+  const { data } = await axios.post<FoodCatalog[]>(
+    "http://localhost:8000/get/foods",
+    { filter: body.filter }
   );
 
   return data;

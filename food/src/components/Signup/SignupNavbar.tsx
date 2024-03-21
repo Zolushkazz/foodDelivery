@@ -3,12 +3,11 @@
 import Image from "next/image";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Grid, InputAdornment, Stack, TextField } from "@mui/material";
+import { InputAdornment, Stack, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { ChangeEvent, useContext, useState } from "react";
-import { UserInfo } from "../Profile/UserInfo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserModal } from "../Modal/userModal";
@@ -99,7 +98,7 @@ export const SignupNavbar = (props: any) => {
                 </Link>
               ),
             }}
-          ></TextField>
+          />
           <Typography sx={{ display: "flex", gap: "10px" }}>
             <ShoppingBasketOutlinedIcon />
             Сагс

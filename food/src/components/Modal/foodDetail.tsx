@@ -3,7 +3,7 @@ import Image from "next/image";
 import axios from "axios";
 
 export const GetFood = async () => {
-  const url = "http://localhost:8000/food";
+  const url = "http://localhost:8000/get/foods";
   try {
     const { data } = await axios.get<FoodCatalog[]>(url);
     return data;
@@ -15,12 +15,6 @@ export const GetFood = async () => {
 export const FoodDetail = async (props: any) => {
   const data = await GetFood();
   const { handleShowModal } = props;
-  // console.log(data);
-
-  //   if (data._id !== ) {
-  //     return "Not matching";s
-  //   } else {
-  //   }
 
   return (
     <Stack

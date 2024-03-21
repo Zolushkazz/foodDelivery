@@ -32,6 +32,7 @@ export const DataProvider = ({ children }: any) => {
     image: "",
     ingredients: "",
     price: "",
+    category: "",
   });
 
   const [loggedInUserData, setLoggedInUserData] = useState({
@@ -46,8 +47,6 @@ export const DataProvider = ({ children }: any) => {
   const accessToken =
     typeof window !== "undefined" && localStorage.getItem("token");
 
-  console.log(accessToken);
-
   const contextValue = {
     loading,
     isLoggedIn,
@@ -58,7 +57,7 @@ export const DataProvider = ({ children }: any) => {
   useEffect(() => {
     const getFoods = async () => {
       try {
-        const { data } = await axios.get("http://localhost:8000/food");
+        const { data } = await axios.post("http://localhost:8000/get/foods");
         setFoodCatalog(data);
       } catch (error: any) {
         console.log("error getting foods");

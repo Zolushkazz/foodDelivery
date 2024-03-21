@@ -27,9 +27,9 @@ type FoodCatalog = {
 };
 
 const getFoods = async () => {
-  const url = "http://localhost:8000/food";
+  const url = "http://localhost:8000/get/foods";
 
-  const { data } = await axios.get<FoodCatalog[]>(url);
+  const { data } = await axios.post<FoodCatalog[]>(url);
   return data;
 };
 

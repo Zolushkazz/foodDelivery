@@ -3,14 +3,13 @@
 import { Container, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import { FoodCard } from "../Home/FoodCard";
-import Image from "next/image";
 import { SearchNotFound } from "./SearchNotFound";
 
 type SearchFoodProps = {
   data: FoodCatalog[];
 };
 
-export const SearchFood = async ({ data }: SearchFoodProps) => {
+export const SearchFood = ({ data }: SearchFoodProps) => {
   return (
     <Stack
       direction={"row"}
