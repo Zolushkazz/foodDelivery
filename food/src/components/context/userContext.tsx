@@ -80,8 +80,6 @@ export const DataProvider = ({ children }: any) => {
             }
           );
 
-          console.log(data);
-
           setIsLoggedIn(true);
           setLoggedInUserData(data);
           setLoading(false);

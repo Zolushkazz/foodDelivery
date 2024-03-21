@@ -1,15 +1,21 @@
 import { AllCategories } from "@/components/foodCategory/Categories";
-import { GetFoodCategory } from "@/components/foodCategory/FoodCategory";
-import { Stack } from "@mui/material";
-import React from "react";
+import axios from "axios";
 
-const FoodCategory = () => {
-  return (
-    <Stack>
-      {/* <GetFoodCategory /> */}
-      <AllCategories />
-    </Stack>
-  );
+const FoodCategory = async () => {
+  try {
+    const { data } = await axios.get<CategoryType[]>(
+      "http://localhost:8000/get/categories"
+    );
+
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-export default FoodCategory;
+const Menu = async () => {
+  const getCategories = await FoodCategory();
+  return <AllCategories categories={getCategories} />;
+};
+
+export default Menu;

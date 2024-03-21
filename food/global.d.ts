@@ -4,15 +4,15 @@ type FoodCatalog = {
   image: string;
   ingredients: string;
   price: string;
+  category: string;
 };
 
 type CategoryType = {
-  label: "";
+  name: string;
+  _id: string;
 };
 
 type Categories = {
   name: string;
-  id: string;
   _id: string;
-  foodId: CategoryType[];
 };

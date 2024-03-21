@@ -1,11 +1,10 @@
 import { Router } from "express";
 import {
-  CreateFoodController,
   GetFoodsController,
+  CreateFoodController,
 } from "../../controllers/food";
 
 export const FoodRouter = Router();
 
-FoodRouter.get("/food", GetFoodsController);
-FoodRouter.post("/createFood", CreateFoodController);
- 
+FoodRouter.post("/get/foods", GetFoodsController);
+FoodRouter.post("/create/food", CreateFoodController);

@@ -6,6 +6,7 @@ export type FoodModelType = {
   image: string;
   ingredients: string;
   price: string;
+  category: Schema.Types.ObjectId;
 };
 
 const FoodSchema = new Schema<FoodModelType>(
@@ -14,6 +15,7 @@ const FoodSchema = new Schema<FoodModelType>(
     image: { type: String, required: true },
     ingredients: { type: String, required: true },
     price: { type: String, required: true },
+    category: { type: Schema.Types.ObjectId, ref: "Category", required: true },
   },
   {
     timestamps: true,
