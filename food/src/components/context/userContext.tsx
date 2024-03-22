@@ -12,11 +12,22 @@ type UserData = {
   isAdmin: string;
 };
 
+type DataType = {
+  _id: string;
+  name: string;
+  quantity: number;
+  image: string;
+  ingredients: string;
+  price: number;
+};
+
 type DataContextProps = {
   loading: boolean;
   isLoggedIn: boolean;
   loggedInUserData: UserData;
   foodCatalog: FoodCatalog;
+  modalData: DataType[];
+  setModalData: (data: DataType[]) => void;
 };
 
 export const DataContext = createContext<DataContextProps>(
@@ -26,6 +37,7 @@ export const DataContext = createContext<DataContextProps>(
 export const DataProvider = ({ children }: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [modalData, setModalData] = useState<DataType[]>([]);
   const [foodCatalog, setFoodCatalog] = useState({
     _id: "",
     name: "",
@@ -52,6 +64,8 @@ export const DataProvider = ({ children }: any) => {
     isLoggedIn,
     loggedInUserData,
     foodCatalog,
+    modalData,
+    setModalData,
   };
 
   useEffect(() => {
@@ -95,7 +109,18 @@ export const DataProvider = ({ children }: any) => {
   }, [accessToken]);
 
   return (
-    <DataContext.Provider value={contextValue}>{children}</DataContext.Provider>
+    <DataContext.Provider
+      value={{
+        loading,
+        isLoggedIn,
+        loggedInUserData,
+        foodCatalog,
+        modalData,
+        setModalData,
+      }}
+    >
+      {children}
+    </DataContext.Provider>
   );
 };
 

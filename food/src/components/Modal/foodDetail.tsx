@@ -1,20 +1,59 @@
+"use client";
+
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import axios from "axios";
+import { DataContext } from "../context/userContext";
+import { useContext, useState } from "react";
 
-export const GetFood = async () => {
-  const url = "http://localhost:8000/get/foods";
-  try {
-    const { data } = await axios.get<FoodCatalog[]>(url);
-    return data;
-  } catch (err: any) {
-    return err.message;
-  }
-};
+// export const GetFood = async () => {
+//   const url = "http://localhost:8000/get/foods";
+//   try {
+//     const { data } = await axios.get<FoodCatalog[]>(url);
+//     return data;
+//   } catch (err: any) {
+//     return err.message;
+//   }
+// };
 
-export const FoodDetail = async (props: any) => {
-  const data = await GetFood();
-  const { handleShowModal } = props;
+export const FoodDetail = (props: any) => {
+  const { name, ingredients, image, price, id, handleShowModal } = props;
+  // const data = await GetFood();
+  const { modalData, setModalData } = useContext(DataContext);
+  const [count, setCount] = useState(1);
+
+  const handleAddFoodModal = () => {
+    if (modalData.some((item) => item._id === id)) {
+      const index = modalData.findIndex((item) => item._id === id);
+      modalData[index].quantity += count;
+      setModalData([...modalData]);
+    }
+
+    const modalItem = {
+      _id: id,
+      name: name,
+      ingredients: ingredients,
+      price: price,
+      image: image,
+      quantity: count,
+    };
+    setModalData([...modalData, modalItem]);
+    localStorage.setItem(
+      "modalData",
+      JSON.stringify([...modalData, modalItem])
+    );
+  };
+
+  const countFood = (ev: any) => {
+    if (ev.target.innerText === "-") {
+      setCount(count - 1);
+      if (count === 1) {
+        return;
+      }
+    } else {
+      setCount(count + 1);
+    }
+  };
 
   return (
     <Stack
@@ -31,7 +70,6 @@ export const FoodDetail = async (props: any) => {
       }}
     >
       <Stack
-        onClick={handleShowModal}
         sx={{
           width: "100vw",
           height: "100vh",
@@ -59,7 +97,7 @@ export const FoodDetail = async (props: any) => {
           justifyContent={"center"}
           borderRadius={"10px"}
         >
-          <Image src={""} width={430} height={430} alt="" />
+          <Image src={image} width={430} height={430} alt="" />
         </Stack>
         <Stack
           width={"35%"}
@@ -69,19 +107,20 @@ export const FoodDetail = async (props: any) => {
         >
           <Stack>
             <Typography fontSize={25} color={"black"}>
-              ss{data.name}
+              ss{name}
             </Typography>
             <Typography fontSize={18} color={"primary.main"}>
-              44{data.price}
+              44{price}
             </Typography>
           </Stack>
           <Stack>
             <Typography fontSize={25}>Орц</Typography>
-            <TextField>{data.ingredients}</TextField>
+            <TextField>{ingredients}</TextField>
           </Stack>
           <Typography fontSize={25}>Тоо</Typography>
           <Stack direction={"row"}>
             <Button
+              onClick={countFood}
               sx={{
                 borderRadius: "8px",
                 width: "25px",
@@ -92,8 +131,9 @@ export const FoodDetail = async (props: any) => {
             >
               -
             </Button>
-            <TextField sx={{ border: "none" }}>1 </TextField>
+            {count}
             <Button
+              onClick={countFood}
               sx={{
                 borderRadius: "8px",
                 width: "25px",
@@ -106,6 +146,7 @@ export const FoodDetail = async (props: any) => {
             </Button>
           </Stack>
           <Button
+            onClick={handleAddFoodModal}
             sx={{
               backgroundColor: "primary.main",
               borderRadius: "8px",

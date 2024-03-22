@@ -1,4 +1,5 @@
 "use client";
+
 import { Box, Stack, Typography } from "@mui/material";
 import axios from "axios";
 import Image from "next/image";
@@ -6,34 +7,11 @@ import { useEffect, useState } from "react";
 import { FoodDetail } from "../Modal/foodDetail";
 import { FoodCard } from "./FoodCard";
 
-//   useEffect(() => {
-
-// const urlCreate = "http://localhost:8000/createFood";
-//     const create = async () => {
-//       try {
-//         await axios.post(urlCreate);
-//       } catch (err) {
-//         alert("Invalid email or password");
-//       }
-//     };
-//     create();
-//   });
-type FoodCatalog = {
-  _id: string;
-  name: string;
-  image: string;
-  ingredients: string;
-  price: string;
+type AllFoodsProps = {
+  allFoods: FoodCatalog[];
 };
 
-const getFoods = async () => {
-  const url = "http://localhost:8000/get/foods";
-
-  const { data } = await axios.post<FoodCatalog[]>(url);
-  return data;
-};
-
-export const AllFoods = async () => {
+export const AllFoods = ({ allFoods }: AllFoodsProps) => {
   const [userData, setUserData] = useState({
     _id: "",
     name: "",
@@ -42,10 +20,9 @@ export const AllFoods = async () => {
     price: "",
   });
 
-  const foods = await getFoods();
-
   return (
     <Stack width={"89%"} paddingLeft={"10%"}>
+      {/* <FoodDetail /> */}
       <Box
         sx={{
           width: "100%",
@@ -66,7 +43,7 @@ export const AllFoods = async () => {
           flexWrap: "wrap",
         }}
       >
-        {foods.map((food, index) => (
+        {allFoods.map((food, index) => (
           <FoodCard {...food} key={index} />
         ))}
       </Box>

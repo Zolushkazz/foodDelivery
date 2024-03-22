@@ -1,51 +1,20 @@
-import { Box, Divider, Stack, Typography } from "@mui/material";
-import Image from "next/image";
+"use client";
+
+import { Stack } from "@mui/material";
 import { ChoicesCategory } from "./Choices";
 import { AllFoods } from "./AllFoods";
-import { FoodDetail } from "../Modal/foodDetail";
+import { HomePageHero } from "./HomePageHero";
 
-export const HomePage = () => {
+type HomePageProps = {
+  allFoods: FoodCatalog[];
+};
+
+export const HomePage = ({ allFoods }: HomePageProps) => {
   return (
     <Stack>
-      <Box
-        sx={{
-          backgroundImage: "url(/desktop.png)",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          position: "relative",
-          height: "900px",
-          marginY: "30px",
-        }}
-      >
-        <Box
-          sx={{
-            position: "absolute",
-            zIndex: "40",
-            left: "10%",
-            color: "white",
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-          }}
-        >
-          <Typography variant="h1">Pinecone</Typography>
-          <Typography variant="h1">Food Delivery</Typography>
-          <Divider sx={{ width: "100%", borderColor: "white" }} />
-          <Typography variant="h5" sx={{ fontSize: "md" }}>
-            We will delivery the most fresh and most delicious
-          </Typography>
-          <Typography variant="h5" sx={{ fontSize: "md" }}>
-            food in your hand
-          </Typography>
-        </Box>
-        <Box sx={{ position: "absolute", zIndex: "40", right: "10%" }}>
-          <Image src="/foodHome.png" width={900} height={700} alt="" />
-        </Box>
-      </Box>
+      <HomePageHero />
       <ChoicesCategory />
-      <AllFoods />
+      <AllFoods allFoods={allFoods} />
     </Stack>
   );
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import ImportContactsRoundedIcon from "@mui/icons-material/ImportContactsRounded";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 import SoupKitchenRoundedIcon from "@mui/icons-material/SoupKitchenRounded";
